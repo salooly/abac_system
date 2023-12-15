@@ -1,0 +1,11 @@
+MONGO_HOST: str = 'MONGO_HOST'
+MONGO_PORT: str = 'MONGO_PORT'
+MONGO_USERNAME: str = 'MONGO_USERNAME'
+MONGO_PASSWORD: str = 'MONGO_PASSWORD'
+
+DB_NAME: str = 'abac_system'
+
+ATTRIBUTES_COLLECTION: str = 'attributes'
+USERS_COLLECTION: str = 'users'
+POLICIES_COLLECTION: str = 'policies'
+RESOURCES_COLLECTION: str = 'resources'

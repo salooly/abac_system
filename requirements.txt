@@ -1,0 +1,5 @@
+pymongo==4.6.1
+fastapi
+typing
+uvicorn
+pydantic
