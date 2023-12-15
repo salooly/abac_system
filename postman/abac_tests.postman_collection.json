@@ -1,0 +1,513 @@
+{
+	"info": {
+		"_postman_id": "9c34b0d9-ce09-4f27-a59b-0cf12cb8f7f5",
+		"name": "abac_tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31830399"
+	},
+	"item": [
+		{
+			"name": "New attribute",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"attribute_name\": \"name\", \"attribute_type\": \"string\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/attributes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"attributes"
+					],
+					"query": [
+						{
+							"key": "attribute_name",
+							"value": "test",
+							"disabled": true
+						},
+						{
+							"key": "attribute_type",
+							"value": "string",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"user_id\": \"test2\", \"attributes\": {\"test\": \"123\", \"name\": \"name of test\"}}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"users"
+					],
+					"query": [
+						{
+							"key": "attribute_name",
+							"value": "test",
+							"disabled": true
+						},
+						{
+							"key": "attribute_type",
+							"value": "string",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Policy",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"policy_id\": \"test\",\r\n    \"conditions\": [\r\n        {\r\n            \"attribute_name\": \"test\",\r\n            \"operator\": \"=\",\r\n            \"value\": \"13\"\r\n        }\r\n]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/policies",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"policies"
+					],
+					"query": [
+						{
+							"key": "attribute_name",
+							"value": "test",
+							"disabled": true
+						},
+						{
+							"key": "attribute_type",
+							"value": "string",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Resource",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"attribute_name\": \"name\", \"attribute_type\": \"string\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/resources",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"resources"
+					],
+					"query": [
+						{
+							"key": "attribute_name",
+							"value": "test",
+							"disabled": true
+						},
+						{
+							"key": "attribute_type",
+							"value": "string",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update User Attributes",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\": \"new_name\", \"test\": \"erer\", \"test2\": false}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/users/test",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"users",
+						"test"
+					],
+					"query": [
+						{
+							"key": "attribute_name",
+							"value": "test",
+							"disabled": true
+						},
+						{
+							"key": "attribute_type",
+							"value": "string",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Policy Conditions",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n        {\r\n            \"attribute_name\": \"height\",\r\n            \"operator\": \">\",\r\n            \"value\": 25\r\n        },\r\n        {\r\n            \"attribute_name\": \"age\",\r\n            \"operator\": \"<\",\r\n            \"value\": 90\r\n        }\r\n    ]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/policies/test",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"policies",
+						"test"
+					],
+					"query": [
+						{
+							"key": "attribute_name",
+							"value": "test",
+							"disabled": true
+						},
+						{
+							"key": "attribute_type",
+							"value": "string",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Resource Policies",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\": \"new_name\", \"test\": \"erer\", \"test2\": false}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/users/test",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"users",
+						"test"
+					],
+					"query": [
+						{
+							"key": "attribute_name",
+							"value": "test",
+							"disabled": true
+						},
+						{
+							"key": "attribute_type",
+							"value": "string",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update User Attribute",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"test\": \"2345644564556456\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/users/test/attributes/test",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"users",
+						"test",
+						"attributes",
+						"test"
+					],
+					"query": [
+						{
+							"key": "attribute_name",
+							"value": "test",
+							"disabled": true
+						},
+						{
+							"key": "attribute_type",
+							"value": "string",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete User Attibute",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "12",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/users/test/attributes/name",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"users",
+						"test",
+						"attributes",
+						"name"
+					],
+					"query": [
+						{
+							"key": "attribute_name",
+							"value": "test",
+							"disabled": true
+						},
+						{
+							"key": "attribute_type",
+							"value": "string",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Attribute",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/attributes/name",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"attributes",
+						"name"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/users/test",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"users",
+						"test"
+					],
+					"query": [
+						{
+							"key": "attribute_name",
+							"value": "test",
+							"disabled": true
+						},
+						{
+							"key": "attribute_type",
+							"value": "string",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Policy",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/policies/test",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"policies",
+						"test"
+					],
+					"query": [
+						{
+							"key": "attribute_name",
+							"value": "test",
+							"disabled": true
+						},
+						{
+							"key": "attribute_type",
+							"value": "string",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Resource",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/attributes/name",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"attributes",
+						"name"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Is Authorized",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/attributes/name",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"attributes",
+						"name"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

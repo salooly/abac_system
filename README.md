@@ -27,3 +27,8 @@ After all is set correctly, the API should be available on port 80.
 * Same goes to conditions, meaning that the condition value must match the attribute they refer to
 * Different operators apply to different data types. For example, a boolean only supports '=', integers support
  '<', '>', '=', and string supports all operators. The API won't allow mismatching values.
+ 
+# API Docs
+Since the project is based on FastAPI, you can access the docs once you initiate the API.\
+It should be in the following url `http://localhost/docs` (unless configured differently)\
+For additional resources, feel free to take a look into the postman folder where you can find postman requests.

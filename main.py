@@ -13,7 +13,7 @@ from utils.validation import (validate_attributes_type, validate_conditions,
 app = FastAPI()
 
 
-@app.post('/attributes')
+@app.post('/attributes', tags=['attributes'])
 async def create_attribute(attribute: Attribute):
     existing_attribute = None
     attribute_name: str = attribute.attribute_name
@@ -27,7 +27,7 @@ async def create_attribute(attribute: Attribute):
     return {'message': 'Attribute created successfully'}
 
 
-@app.get('/attributes/{attribute_name}')
+@app.get('/attributes/{attribute_name}', tags=['attributes'])
 async def get_attribute(attribute_name: str):
     try:
         attribute = AttributesHelper[attribute_name]
@@ -37,7 +37,7 @@ async def get_attribute(attribute_name: str):
         raise HTTPException(status_code=404, detail=error_message)
 
 
-@app.post('/users')
+@app.post('/users', tags=['users'])
 async def create_user(user: User):
     for _ in DBClient.query(collection=USERS_COLLECTION, query={'_id': user.user_id}):
         raise HTTPException(status_code=404, detail='user already exists')
@@ -47,7 +47,7 @@ async def create_user(user: User):
     return {'message': 'User created successfully'}
 
 
-@app.get('/users/{user_id}')
+@app.get('/users/{user_id}', tags=['users'])
 async def get_user(user_id: str):
     user = DBClient.search_for_id(collection=USERS_COLLECTION, id_value=user_id)
     if not user:
@@ -55,7 +55,7 @@ async def get_user(user_id: str):
     return user
 
 
-@app.put('/users/{user_id}')
+@app.put('/users/{user_id}', tags=['users'])
 async def update_user_attributes(user_id: str, new_attributes: dict):
     validate_attributes_type(new_attributes or {})
     try:
@@ -74,7 +74,7 @@ async def update_user_attributes(user_id: str, new_attributes: dict):
     return {'message': 'User attributes updated successfully'}
 
 
-@app.patch('/users/{user_id}/attributes/{attribute_name}')
+@app.patch('/users/{user_id}/attributes/{attribute_name}', tags=['users'])
 async def update_user_attribute(user_id: str, attribute_name: str, new_value: dict):
     new_value = new_value.get(attribute_name)
     validate_attributes_type({attribute_name: new_value})
@@ -94,7 +94,7 @@ async def update_user_attribute(user_id: str, attribute_name: str, new_value: di
     return {'message': 'User attribute updated successfully'}
 
 
-@app.delete('/users/{user_id}/attributes/{attribute_name}')
+@app.delete('/users/{user_id}/attributes/{attribute_name}', tags=['users'])
 async def delete_user_attribute(user_id: str, attribute_name: str):
     try:
         DBClient.remove(
@@ -112,7 +112,7 @@ async def delete_user_attribute(user_id: str, attribute_name: str):
     return {'message': 'User attribute updated successfully'}
 
 
-@app.post('/policies')
+@app.post('/policies', tags=['policies'])
 async def create_policy(policy: Policy):
     for _ in DBClient.query(collection=POLICIES_COLLECTION, query={'_id': policy.policy_id}):
         raise HTTPException(status_code=404, detail='policy already exists')
@@ -122,7 +122,7 @@ async def create_policy(policy: Policy):
     return {'message': 'Policy created successfully'}
 
 
-@app.get('/policies/{policy_id}')
+@app.get('/policies/{policy_id}', tags=['policies'])
 async def get_policy(policy_id: str):
     policy = DBClient.search_for_id(collection=POLICIES_COLLECTION, id_value=policy_id)
     if not policy:
@@ -130,7 +130,7 @@ async def get_policy(policy_id: str):
     return policy
 
 
-@app.put('/policies/{policy_id}')
+@app.put('/policies/{policy_id}', tags=['policies'])
 async def update_policy_conditions(policy_id: str, new_conditions: List[Condition]):
     validate_conditions(new_conditions or [])
     try:
@@ -149,7 +149,7 @@ async def update_policy_conditions(policy_id: str, new_conditions: List[Conditio
     return {'message': 'Policy conditions updated successfully'}
 
 
-@app.post('/resources')
+@app.post('/resources', tags=['resource'])
 async def create_resource(resource: Resource):
     for _ in DBClient.query(collection=RESOURCES_COLLECTION, query={'_id': resource.resource_id}):
         raise HTTPException(status_code=404, detail='resource already exists')
@@ -159,7 +159,7 @@ async def create_resource(resource: Resource):
     return {'message': 'Resource created successfully'}
 
 
-@app.get('/resources/{resource_id}')
+@app.get('/resources/{resource_id}', tags=['resource'])
 async def get_resource(resource_id: str):
     resource = DBClient.search_for_id(collection=RESOURCES_COLLECTION, id_value=resource_id)
     if not resource:
@@ -167,7 +167,7 @@ async def get_resource(resource_id: str):
     return resource
 
 
-@app.put('/resources/{resource_id}')
+@app.put('/resources/{resource_id}', tags=['resource'])
 async def update_resource_policies(resource_id: str, new_policy_ids: List[str]):
     validate_policy_ids(new_policy_ids)
     try:
@@ -187,6 +187,6 @@ async def update_resource_policies(resource_id: str, new_policy_ids: List[str]):
     return {'message': 'Resource policies updated successfully'}
 
 
-@app.get('/is_authorized')
+@app.get('/is_authorized', tags=['authorize'])
 async def read_item(user_id: str, resource_id: str):
     return {'decision': authorize_user(user_id=user_id, resource_id=resource_id)}
